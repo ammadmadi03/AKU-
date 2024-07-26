@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+    <link rel="stylesheet" href="./assets/css/admin_login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-form" id="dl">
+            <h1 class="welcome-message">
+                <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span>!</span>
+            </h1>
+            <form action="#" class="fl" id="loginForm">
+                <input type="text" name="Username" id="auser" placeholder="Enter Your Username" class="input-field">
+                <br>
+                <input type="password" name="password" id="apass" placeholder="Enter password" class="input-field">
+                <br>
+                <button type="button" class="lbtn" id="lBtn">Log In</button>
+                <br><br>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        var uInput = document.getElementById('auser');
+        var passInput = document.getElementById('apass');
+        var loginBtn = document.getElementById('lBtn');
+
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function () {
+
+                var username = uInput.value;
+                var password = passInput.value;
+
+                if (username === 'ammad' && password === '123456') {
+
+                    window.location.href = 'index.html';
+                } else {
+
+                    alert('Invalid username or password. Please try again.');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
