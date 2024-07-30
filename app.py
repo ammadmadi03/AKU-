@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
-from md_pdf_json import parse_resume
+from extract_data import parse_resume
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/upload": {"origins": "*"}})
+CORS(app)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
