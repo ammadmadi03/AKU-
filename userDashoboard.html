@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+  <title>Candidate Dashboard</title>
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
   <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -86,25 +86,18 @@
             <li class="nav-item active submenu">
               <a data-bs-toggle="collapse" href="#">
                 <i class="fas fa-layer-group"></i>
-                <p>Interviews</p>
+                <p>Candidate Dashboard</p>
                 <span class="caret"></span>
               </a>
               <div class="collapse show" id="base">
                 <ul class="nav nav-collapse">
                   <li class="active">
-                    <a href="./Interviews/info.html">
-                      <span class="sub-item">Candidate Information</span>
+                    <a href="./taskpage/candidateExam.html">
+                      <span class="sub-item">Candidate Exam</span>
                     </a>
                   </li>
                </ul>
               </div>
-            </li>
-            <li class="nav-item">
-              <a href="userDashoboard.html">
-                <i class="fas fa-home"></i>
-                <p>Candidate Dashboard</p>
-                <!-- <span class="badge badge-success">4</span> -->
-              </a>
             </li>
           </ul>
         </div>
@@ -324,7 +317,7 @@
                       <a class="dropdown-item" href="#">My Balance</a>
                       <a class="dropdown-item" href="#">Inbox</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="./Settings.html">Settings</a>
+                      <a class="dropdown-item" href="#">Account Setting</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./admin_login.html">Logout</a>
                     </li>
@@ -339,72 +332,34 @@
 
       <div class="container">
         <div class="page-inner">
-          <div id="calendar"></div>
-        </div>
+          <div class="container mt-5">
+						<h3 class="card-title"> <i class="fas fa-user-plus"></i>Candidate Dashboard</h3>
 
-
-        <!-- Custom template | don't include it in your project! -->
-        <div class="custom-template">
-          <div class="title">Settings</div>
-          <div class="custom-content">
-            <div class="switcher">
-              <div class="switch-block">
-                <h4>Logo Header</h4>
-                <div class="btnSwitch">
-                  <button type="button" class="selected changeLogoHeaderColor" data-color="dark"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="blue"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="purple"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="light-blue"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="green"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="orange"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="red"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="white"></button>
-                  <br />
-                  <button type="button" class="changeLogoHeaderColor" data-color="dark2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="blue2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="purple2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="light-blue2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="green2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="orange2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="red2"></button>
-                </div>
-              </div>
-              <div class="switch-block">
-                <h4>Navbar Header</h4>
-                <div class="btnSwitch">
-                  <button type="button" class="changeTopBarColor" data-color="dark"></button>
-                  <button type="button" class="changeTopBarColor" data-color="blue"></button>
-                  <button type="button" class="changeTopBarColor" data-color="purple"></button>
-                  <button type="button" class="changeTopBarColor" data-color="light-blue"></button>
-                  <button type="button" class="changeTopBarColor" data-color="green"></button>
-                  <button type="button" class="changeTopBarColor" data-color="orange"></button>
-                  <button type="button" class="changeTopBarColor" data-color="red"></button>
-                  <button type="button" class="selected changeTopBarColor" data-color="white"></button>
-                  <br />
-                  <button type="button" class="changeTopBarColor" data-color="dark2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="blue2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="purple2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="light-blue2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="green2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="orange2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="red2"></button>
-                </div>
-              </div>
-              <div class="switch-block">
-                <h4>Sidebar</h4>
-                <div class="btnSwitch">
-                  <button type="button" class="changeSideBarColor" data-color="white"></button>
-                  <button type="button" class="selected changeSideBarColor" data-color="dark"></button>
-                  <button type="button" class="changeSideBarColor" data-color="dark2"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="custom-toggle">
-            <i class="icon-settings"></i>
-          </div>
-        </div>
-        <!-- End Custom template -->
+						<div class="row row-demo-grid-rounded">
+						  <div class="col">
+							<div class="card">
+							  <div class="card-body"><code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Information Technology </a></h2></code></div>
+							</div>
+						  </div>
+						  <div class="col">
+							<div class="card">
+							  <div class="card-body"><code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Intermediate Level</a></h2></code></div>
+							</div>
+						  </div>
+						</div>
+						<div class="row row-demo-grid-rounded">
+						  <div class="col">
+							<div class="card">
+							  <div class="card-body"><code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Beginner Level</a></h2></code></div>
+							</div>
+						  </div>
+						  <div class="col">
+						  
+						  </div>
+						</div>
+			
+						</div>
+         
       </div>
       <!--   Core JS Files   -->
       <script src="assets/js/core/jquery-3.7.1.min.js"></script>
@@ -476,7 +431,7 @@
         });
       </script>
       <!-- Calendar Initialization Script -->
-      <script>
+      <!-- <script>
         document.addEventListener('DOMContentLoaded', () => {
           const calendarEl = document.getElementById('calendar');
 
@@ -556,7 +511,7 @@
             console.error('Calendar element not found');
           }
         });
-      </script>
+      </script> -->
 </body>
 
 </html>
