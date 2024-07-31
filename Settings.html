@@ -32,12 +32,7 @@
   <link rel="stylesheet" href="assets/css/plugins.min.css" />
   <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
 
-  <!-- FullCalendar CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css" rel="stylesheet" />
-
-  <!-- FullCalendar Bootstrap 5 Theme CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@5.11.3/main.min.css" rel="stylesheet" />
+ 
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -317,7 +312,7 @@
                       <a class="dropdown-item" href="#">My Balance</a>
                       <a class="dropdown-item" href="#">Inbox</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="./Settings.html">Settings</a>
+                      <a class="dropdown-item" href="">Settings</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./admin_login.html">Logout</a>
                     </li>
@@ -332,73 +327,102 @@
 
       <div class="container">
         <div class="page-inner">
-          <div id="calendar"></div>
-        </div>
-
-
-        <!-- Custom template | don't include it in your project! -->
-        <div class="custom-template">
-          <div class="title">Settings</div>
-          <div class="custom-content">
-            <div class="switcher">
-              <div class="switch-block">
-                <h4>Logo Header</h4>
-                <div class="btnSwitch">
-                  <button type="button" class="selected changeLogoHeaderColor" data-color="dark"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="blue"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="purple"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="light-blue"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="green"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="orange"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="red"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="white"></button>
-                  <br />
-                  <button type="button" class="changeLogoHeaderColor" data-color="dark2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="blue2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="purple2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="light-blue2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="green2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="orange2"></button>
-                  <button type="button" class="changeLogoHeaderColor" data-color="red2"></button>
-                </div>
-              </div>
-              <div class="switch-block">
-                <h4>Navbar Header</h4>
-                <div class="btnSwitch">
-                  <button type="button" class="changeTopBarColor" data-color="dark"></button>
-                  <button type="button" class="changeTopBarColor" data-color="blue"></button>
-                  <button type="button" class="changeTopBarColor" data-color="purple"></button>
-                  <button type="button" class="changeTopBarColor" data-color="light-blue"></button>
-                  <button type="button" class="changeTopBarColor" data-color="green"></button>
-                  <button type="button" class="changeTopBarColor" data-color="orange"></button>
-                  <button type="button" class="changeTopBarColor" data-color="red"></button>
-                  <button type="button" class="selected changeTopBarColor" data-color="white"></button>
-                  <br />
-                  <button type="button" class="changeTopBarColor" data-color="dark2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="blue2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="purple2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="light-blue2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="green2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="orange2"></button>
-                  <button type="button" class="changeTopBarColor" data-color="red2"></button>
-                </div>
-              </div>
-              <div class="switch-block">
-                <h4>Sidebar</h4>
-                <div class="btnSwitch">
-                  <button type="button" class="changeSideBarColor" data-color="white"></button>
-                  <button type="button" class="selected changeSideBarColor" data-color="dark"></button>
-                  <button type="button" class="changeSideBarColor" data-color="dark2"></button>
-                </div>
-              </div>
+           <!-- Departments Table -->
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Departments</h4>
+              <button class="btn btn-primary" onclick="openForm('department')">Add Department</button>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="departmentsTableBody">
+                  <!-- Dynamic Content -->
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="custom-toggle">
-            <i class="icon-settings"></i>
+
+          <!-- Stages Table -->
+          <div class="card mt-4">
+            <div class="card-header">
+              <h4 class="card-title">Stages</h4>
+              <button class="btn btn-primary" onclick="openForm('stage')">Add Stage</button>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="stagesTableBody">
+                  <!-- Dynamic Content -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tests Table -->
+          <div class="card mt-4">
+            <div class="card-header">
+              <h4 class="card-title">Tests</h4>
+              <button class="btn btn-primary" onclick="openForm('test')">Add Test</button>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="testsTableBody">
+                  <!-- Dynamic Content -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        <!-- End Custom template -->
       </div>
+
+      <!-- Add/Edit Form Modal -->
+      <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="formModalLabel">Form</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="entityForm">
+                <div class="form-group">
+                  <label for="entityName">Name</label>
+                  <input type="text" class="form-control" id="entityName" placeholder="Enter name">
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+                <button type="button" class="btn btn-primary" onclick="saveEntity()">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+        
       <!--   Core JS Files   -->
       <script src="assets/js/core/jquery-3.7.1.min.js"></script>
       <script src="assets/js/core/popper.min.js"></script>
@@ -426,20 +450,154 @@
       <script src="assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
       <script src="assets/js/plugin/jsvectormap/world.js"></script>
 
-      <!-- Sweet Alert -->
-      <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
-      <!-- Kaiadmin JS -->
-      <script src="assets/js/kaiadmin.min.js"></script>
+    <!-- Kaiadmin JS -->
+    <script src="assets/js/kaiadmin.min.js"></script>
 
-      <!-- FullCalendar JS -->
-      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@5.11.3/main.min.js"></script>
+    <script>
+        let currentEntity = '';
+        let currentId = null;
 
-      <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-      <script src="assets/js/setting-demo.js"></script>
-      <script src="assets/js/demo.js"></script>
+        // Load initial data from localStorage
+        let departmentCounter = 1;
+        let stageCounter = 1;
+        let testCounter = 1;
+
+        $(document).ready(function() {
+          loadEntities('department');
+          loadEntities('stage');
+          loadEntities('test');
+        });
+
+        function openForm(entity, id = null, name = '') {
+          currentEntity = entity;
+          currentId = id;
+          $('#entityName').val(name);
+          $('#formModalLabel').text(id ? 'Edit ' + capitalize(entity) : 'Add ' + capitalize(entity));
+          $('#formModal').modal('show');
+        }
+
+        function clearForm() {
+          $('#entityName').val('');
+        }
+
+        function saveEntity() {
+          const name = $('#entityName').val();
+          if (!name) {
+            alert('Name is required');
+            return;
+          }
+
+          if (currentId) {
+            // Update existing entity
+            $('#' + currentEntity + currentId + ' .entityName').text(name);
+            updateLocalStorage(currentEntity, currentId, name);
+            currentId = null;
+          } else {
+            // Add new entity
+            let id;
+            switch (currentEntity) {
+              case 'department':
+                id = departmentCounter++;
+                break;
+              case 'stage':
+                id = stageCounter++;
+                break;
+              case 'test':
+                id = testCounter++;
+                break;
+            }
+
+            const row = `<tr id="${currentEntity}${id}">
+                          <td>${id}</td>
+                          <td class="entityName">${name}</td>
+                          <td>
+                            <button class="btn btn-warning" onclick="openForm('${currentEntity}', ${id}, '${name}')">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteEntity('${currentEntity}', ${id})">Delete</button>
+                          </td>
+                        </tr>`;
+            $('#' + currentEntity + 'sTableBody').append(row);
+            saveToLocalStorage(currentEntity, id, name);
+          }
+
+          $('#formModal').modal('hide');
+        }
+
+        function deleteEntity(entity, id) {
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $('#' + entity + id).remove();
+              removeFromLocalStorage(entity, id);
+              Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+            }
+          });
+        }
+
+        function capitalize(s) {
+          return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+
+        function saveToLocalStorage(entity, id, name) {
+          const entities = JSON.parse(localStorage.getItem(entity + 's')) || [];
+          entities.push({ id, name });
+          localStorage.setItem(entity + 's', JSON.stringify(entities));
+        }
+
+        function updateLocalStorage(entity, id, name) {
+          const entities = JSON.parse(localStorage.getItem(entity + 's')) || [];
+          const index = entities.findIndex(e => e.id === id);
+          if (index !== -1) {
+            entities[index].name = name;
+            localStorage.setItem(entity + 's', JSON.stringify(entities));
+          }
+        }
+
+        function removeFromLocalStorage(entity, id) {
+          let entities = JSON.parse(localStorage.getItem(entity + 's')) || [];
+          entities = entities.filter(e => e.id !== id);
+          localStorage.setItem(entity + 's', JSON.stringify(entities));
+        }
+
+        function loadEntities(entity) {
+          const entities = JSON.parse(localStorage.getItem(entity + 's')) || [];
+          let counter = 1;
+          entities.forEach(e => {
+            const row = `<tr id="${entity}${e.id}">
+                          <td>${e.id}</td>
+                          <td class="entityName">${e.name}</td>
+                          <td>
+                            <button class="btn btn-warning" onclick="openForm('${entity}', ${e.id}, '${e.name}')">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteEntity('${entity}', ${e.id})">Delete</button>
+                          </td>
+                        </tr>`;
+            $('#' + entity + 'sTableBody').append(row);
+            counter = Math.max(counter, e.id + 1);
+          });
+
+          switch (entity) {
+            case 'department':
+              departmentCounter = counter;
+              break;
+            case 'stage':
+              stageCounter = counter;
+              break;
+            case 'test':
+              testCounter = counter;
+              break;
+          }
+        }
+      </script>
+    
       <script>
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
           type: "line",
@@ -468,88 +626,7 @@
           fillColor: "rgba(255, 165, 52, .14)",
         });
       </script>
-      <!-- Calendar Initialization Script -->
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const calendarEl = document.getElementById('calendar');
-
-          if (calendarEl) {
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-              timeZone: 'UTC',
-              themeSystem: 'bootstrap5',
-              headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-              },
-              weekNumbers: true,
-              dayMaxEvents: true, // allow "more" link when too many events
-              editable: true, // Allows drag and drop
-              selectable: true, // Allows date selection
-              select: function (info) {
-                const title = prompt('Enter Event Title:');
-                if (title) {
-                  calendar.addEvent({
-                    title: title,
-                    start: info.startStr,
-                    end: info.endStr,
-                    allDay: info.allDay
-                  });
-                }
-                calendar.unselect(); // clear date selection
-              },
-              eventDidMount: function (info) {
-                const buttonsEl = document.createElement('div');
-                buttonsEl.classList.add('fc-event-buttons');
-
-                // Create Edit button
-                const editButton = document.createElement('button');
-                editButton.innerText = 'Edit';
-                editButton.classList.add('fc-event-button');
-                editButton.onclick = function () {
-                  const newTitle = prompt('Enter new title for the event:', info.event.title);
-                  if (newTitle !== null) {
-                    info.event.setProp('title', newTitle);
-                  }
-                };
-                buttonsEl.appendChild(editButton);
-
-                // Create Delete button
-                const deleteButton = document.createElement('button');
-                deleteButton.innerText = 'Delete';
-                deleteButton.classList.add('fc-event-button');
-                deleteButton.onclick = function () {
-                  Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      info.event.remove();
-                      Swal.fire(
-                        'Deleted!',
-                        'Your event has been deleted.',
-                        'success'
-                      );
-                    }
-                  });
-                };
-                buttonsEl.appendChild(deleteButton);
-
-                info.el.appendChild(buttonsEl);
-              }
-            });
-
-            calendar.render();
-          } else {
-            console.error('Calendar element not found');
-          }
-        });
-      </script>
+      
 </body>
 
 </html>
