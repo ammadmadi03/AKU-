@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from extract_data import parse_resume
+import pyp_extract_data as ped
+import fitz_extract_data as fed
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -16,7 +17,8 @@ def upload_file():
         return jsonify({'error': 'No selected file'}), 400
     
     if file and file.filename.endswith('.pdf'):
-        info = parse_resume(file)
+        info = ped.parse_resume(file)
+        # info = fed.parse_resume(file)
 
         return jsonify(info)
 
