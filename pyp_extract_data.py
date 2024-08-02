@@ -7,9 +7,9 @@ import os
 
 nlp = spacy.load("en_core_web_md")
 
-def extract_text_from_pdf(pdf_path):
+def extract_text_from_pdf(file):
     try:
-        pdf_reader = PdfReader(pdf_path, strict=False)
+        pdf_reader = PdfReader(file, strict=False)
     except Exception as e:
         print(f"Error reading PDF: {e}")
         return ""    

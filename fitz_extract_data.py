@@ -7,10 +7,10 @@ import os
 
 nlp = spacy.load("en_core_web_md")
 
-def extract_text_from_pdf(pdf_path):
-    print(f"Extract function: pdf path = {pdf_path}")
+def extract_text_from_pdf(file):
+    print(f"Extract function: pdf path = {file}")
     try:
-        pdf_reader = fitz.open(pdf_path)  
+        pdf_reader = fitz.open(stream=file.read(), filetype="pdf")  
     except Exception as e:
         print(f"Error opening PDF (pymupdf): {e}")
         return ""
@@ -23,6 +23,16 @@ def extract_text_from_pdf(pdf_path):
         print(f"Error extracting text from PDF (pymupdf): {e}")
         return ""
     
+    lines = text.split('\n')
+    normalized_lines = []
+    for line in lines:
+        if line.isupper():
+            words = line.split()
+            capitalized_words = [word.capitalize() for word in words]
+            normalized_lines.append(' '.join(capitalized_words))
+        else:
+            normalized_lines.append(line)
+    text = '\n'.join(normalized_lines)
     return text
 
 def get_name(doc):
@@ -36,7 +46,7 @@ def get_email(text):
         return email[0]
 
 def get_phone_number(text):
-    phone_pattern = r'(?:(?:0092|\+92)[-.\s]?|\d{1})(\d{3})[-.\s]?(\d{3})[-.\s]?(\d{4})'
+    phone_pattern = r'(?:(?:0092|\+92)[-.\s]?|\d{1})?(\d{3})[-.\s]?(\d{3})[-.\s]?(\d{4})'
     phone_match = re.search(phone_pattern, text)
     if phone_match:
         return phone_match.group(0).strip()

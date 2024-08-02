@@ -8,17 +8,17 @@ CORS(app)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    if 'res_file' not in request.files:
+    if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     
-    file = request.files['res_file']
+    file = request.files['file']
 
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
     
     if file and file.filename.endswith('.pdf'):
-        info = ped.parse_resume(file)
-        # info = fed.parse_resume(file)
+        # info = ped.parse_resume(file)
+        info = fed.parse_resume(file)
 
         return jsonify(info)
 
