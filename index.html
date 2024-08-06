@@ -28,6 +28,7 @@
   </script>
 
   <!-- CSS Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/plugins.min.css" />
   <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
@@ -96,7 +97,7 @@
                       <span class="sub-item">Candidate Information</span>
                     </a>
                   </li>
-               </ul>
+                </ul>
               </div>
             </li>
             <li class="nav-item">
@@ -106,7 +107,36 @@
                 <!-- <span class="badge badge-success">4</span> -->
               </a>
             </li>
-          </ul>
+            <li class="nav-item">
+              <a data-bs-toggle="collapse" href="#settingsDropdown" role="button" aria-expanded="false"
+                aria-controls="settingsDropdown">
+                <i class="fas fa-cog"></i>
+                <p>Settings</p>
+                <span class="caret"></span>
+              </a>
+              <div class="collapse" id="settingsDropdown">
+                <ul class="nav nav-collapse">
+                  <li>
+                    <a href="./settings/departments.html" class="dropdown-item" data-toggle="collapse">
+                      <i class="fas fa-building"></i>
+                      <span class="sub-item">Departments</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./settings/stages.html" class="dropdown-item" data-toggle="collapse">
+                      <i class="fa-solid fa-clapperboard"></i>
+                      <span class="sub-item">Stages</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./settings/tests.html" class="dropdown-item" data-toggle="collapse">
+                      <i class="fa-solid fa-file-alt"></i>
+                      <span class="sub-item">Tests</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
         </div>
       </div>
     </div>
@@ -292,7 +322,7 @@
                   </li>
                 </ul>
               </li>
-             
+
 
               <li class="nav-item topbar-user dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
@@ -473,6 +503,17 @@
           lineWidth: "2",
           lineColor: "#ffa534",
           fillColor: "rgba(255, 165, 52, .14)",
+        });
+      </script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var dropdownItems = document.querySelectorAll('.dropdown-item');
+          dropdownItems.forEach(function (item) {
+            item.addEventListener('click', function (e) {
+              e.stopPropagation();
+            });
+          });
         });
       </script>
       <!-- Calendar Initialization Script -->

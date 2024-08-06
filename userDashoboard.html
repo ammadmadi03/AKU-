@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Candidate Dashboard</title>
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-  <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="./assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
   <!-- Fonts and icons -->
   <script src="assets/js/plugin/webfont/webfont.min.js"></script>
@@ -28,6 +28,7 @@
   </script>
 
   <!-- CSS Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/plugins.min.css" />
   <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
@@ -86,32 +87,66 @@
             <li class="nav-item active submenu">
               <a data-bs-toggle="collapse" href="#">
                 <i class="fas fa-layer-group"></i>
-                <p>Candidate Dashboard</p>
+                <p>Interviews</p>
                 <span class="caret"></span>
               </a>
               <div class="collapse show" id="base">
                 <ul class="nav nav-collapse">
                   <li class="active">
-                    <a href="./taskpage/candidateExam.html">
-                      <span class="sub-item">Candidate Exam</span>
+                    <a href="./Interviews/info.html">
+                      <span class="sub-item">Candidate Information</span>
                     </a>
                   </li>
                </ul>
               </div>
             </li>
-          </ul>
+            <li class="nav-item">
+              <a href="userDashoboard.html">
+                <i class="fas fa-home"></i>
+                <p>Candidate Dashboard</p>
+                <!-- <span class="badge badge-success">4</span> -->
+              </a>
+            </li>
+            <li class="nav-item">
+              <a data-bs-toggle="collapse" href="#settingsDropdown" role="button" aria-expanded="false" aria-controls="settingsDropdown">
+                  <i class="fas fa-cog"></i>
+                  <p>Settings</p>
+                  <span class="caret"></span>
+              </a>
+              <div class="collapse" id="settingsDropdown">
+                  <ul class="nav nav-collapse">
+                      <li>
+                          <a href="./settings/departments.html">
+                              <i class="fas fa-building"></i>
+                              <span class="sub-item">Departments</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="./settings/stages.html">
+                              <i class="fa-solid fa-clapperboard"></i>
+                              <span class="sub-item">Stages</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="./settings/tests.html">
+                              <i class="fa-solid fa-file-alt"></i>
+                              <span class="sub-item">Tests</span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
         </div>
       </div>
     </div>
     <!-- End Sidebar -->
-
     <div class="main-panel">
       <div class="main-header">
         <div class="main-header-logo">
           <!-- Logo Header -->
           <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
-              <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+              <img src="./assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
             </a>
             <div class="nav-toggle">
               <button class="btn btn-toggle toggle-sidebar">
@@ -172,7 +207,7 @@
                       <div class="notif-center">
                         <a href="#">
                           <div class="notif-img">
-                            <img src="assets/img/jm_denis.jpg" alt="Img Profile" />
+                            <img src="./assets/img/jm_denis.jpg" alt="Img Profile" />
                           </div>
                           <div class="notif-content">
                             <span class="subject">Jimmy Denis</span>
@@ -182,7 +217,7 @@
                         </a>
                         <a href="#">
                           <div class="notif-img">
-                            <img src="assets/img/chadengle.jpg" alt="Img Profile" />
+                            <img src="./assets/img/chadengle.jpg" alt="Img Profile" />
                           </div>
                           <div class="notif-content">
                             <span class="subject">Chad</span>
@@ -192,7 +227,7 @@
                         </a>
                         <a href="#">
                           <div class="notif-img">
-                            <img src="assets/img/mlane.jpg" alt="Img Profile" />
+                            <img src="./assets/img/mlane.jpg" alt="Img Profile" />
                           </div>
                           <div class="notif-content">
                             <span class="subject">Jhon Doe</span>
@@ -204,7 +239,7 @@
                         </a>
                         <a href="#">
                           <div class="notif-img">
-                            <img src="assets/img/talha.jpg" alt="Img Profile" />
+                            <img src="./assets/img/talha.jpg" alt="Img Profile" />
                           </div>
                           <div class="notif-content">
                             <span class="subject">Talha</span>
@@ -258,7 +293,7 @@
                         </a>
                         <a href="#">
                           <div class="notif-img">
-                            <img src="assets/img/profile2.jpg" alt="Img Profile" />
+                            <img src="./assets/img/profile2.jpg" alt="Img Profile" />
                           </div>
                           <div class="notif-content">
                             <span class="block">
@@ -285,12 +320,12 @@
                   </li>
                 </ul>
               </li>
-             
+
 
               <li class="nav-item topbar-user dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
                   <div class="avatar-sm">
-                    <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
+                    <img src="./assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
                   </div>
                   <span class="profile-username">
                     <span class="op-7">Hi,</span>
@@ -302,7 +337,7 @@
                     <li>
                       <div class="user-box">
                         <div class="avatar-lg">
-                          <img src="assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
+                          <img src="./assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
                         </div>
                         <div class="u-text">
                           <h4>Hizrian</h4>
@@ -317,7 +352,7 @@
                       <a class="dropdown-item" href="#">My Balance</a>
                       <a class="dropdown-item" href="#">Inbox</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Account Setting</a>
+                      <a class="dropdown-item" href="./Settings.html">Settings</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="./admin_login.html">Logout</a>
                     </li>
@@ -333,185 +368,105 @@
       <div class="container">
         <div class="page-inner">
           <div class="container mt-5">
-						<h3 class="card-title"> <i class="fas fa-user-plus"></i>Candidate Dashboard</h3>
+            <h3 class="card-title"> <i class="fas fa-user-plus"></i>Candidate Dashboard</h3>
 
-						<div class="row row-demo-grid-rounded">
-						  <div class="col">
-							<div class="card">
-							  <div class="card-body"><code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Information Technology </a></h2></code></div>
-							</div>
-						  </div>
-						  <div class="col">
-							<div class="card">
-							  <div class="card-body"><code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Intermediate Level</a></h2></code></div>
-							</div>
-						  </div>
-						</div>
-						<div class="row row-demo-grid-rounded">
-						  <div class="col">
-							<div class="card">
-							  <div class="card-body"><code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Beginner Level</a></h2></code></div>
-							</div>
-						  </div>
-						  <div class="col">
-						  
-						  </div>
-						</div>
-			
-						</div>
-         
-      </div>
-      <!--   Core JS Files   -->
-      <script src="assets/js/core/jquery-3.7.1.min.js"></script>
-      <script src="assets/js/core/popper.min.js"></script>
-      <script src="assets/js/core/bootstrap.min.js"></script>
+            <div class="row row-demo-grid-rounded">
+              <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Information Technology </a></h2></code>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Intermediate Level</a></h2></code>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-demo-grid-rounded">
+              <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <code><h2 style="color: black;"><a href="./taskpage/candidateExam.html" class="links" target="_blank">Beginner Level</a></h2></code>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
 
-      <!-- jQuery Scrollbar -->
-      <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+              </div>
+            </div>
 
-      <!-- Chart JS -->
-      <script src="assets/js/plugin/chart.js/chart.min.js"></script>
+          </div>
 
-      <!-- jQuery Sparkline -->
-      <script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+        </div>
+        <!--   Core JS Files   -->
+        <script src="./assets/js/core/jquery-3.7.1.min.js"></script>
+        <script src="./assets/js/core/popper.min.js"></script>
+        <script src="./assets/js/core/bootstrap.min.js"></script>
 
-      <!-- Chart Circle -->
-      <script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="./assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-      <!-- Datatables -->
-      <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+        <!-- Chart JS -->
+        <script src="./assets/js/plugin/chart.js/chart.min.js"></script>
 
-      <!-- Bootstrap Notify -->
-      <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+        <!-- jQuery Sparkline -->
+        <script src="./assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
-      <!-- jQuery Vector Maps -->
-      <script src="assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
-      <script src="assets/js/plugin/jsvectormap/world.js"></script>
+        <!-- Chart Circle -->
+        <script src="./assets/js/plugin/chart-circle/circles.min.js"></script>
 
-      <!-- Sweet Alert -->
-      <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+        <!-- Datatables -->
+        <script src="./assets/js/plugin/datatables/datatables.min.js"></script>
 
-      <!-- Kaiadmin JS -->
-      <script src="assets/js/kaiadmin.min.js"></script>
+        <!-- Bootstrap Notify -->
+        <script src="./assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-      <!-- FullCalendar JS -->
-      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@5.11.3/main.min.js"></script>
+        <!-- jQuery Vector Maps -->
+        <script src="./assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+        <script src="./assets/js/plugin/jsvectormap/world.js"></script>
 
-      <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-      <script src="assets/js/setting-demo.js"></script>
-      <script src="assets/js/demo.js"></script>
-      <script>
-        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#177dff",
-          fillColor: "rgba(23, 125, 255, 0.14)",
-        });
+        <!-- Sweet Alert -->
+        <script src="./assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
-        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#f3545d",
-          fillColor: "rgba(243, 84, 93, .14)",
-        });
+        <!-- Kaiadmin JS -->
+        <script src="./assets/js/kaiadmin.min.js"></script>
 
-        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#ffa534",
-          fillColor: "rgba(255, 165, 52, .14)",
-        });
-      </script>
-      <!-- Calendar Initialization Script -->
-      <!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const calendarEl = document.getElementById('calendar');
 
-          if (calendarEl) {
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-              timeZone: 'UTC',
-              themeSystem: 'bootstrap5',
-              headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-              },
-              weekNumbers: true,
-              dayMaxEvents: true, // allow "more" link when too many events
-              editable: true, // Allows drag and drop
-              selectable: true, // Allows date selection
-              select: function (info) {
-                const title = prompt('Enter Event Title:');
-                if (title) {
-                  calendar.addEvent({
-                    title: title,
-                    start: info.startStr,
-                    end: info.endStr,
-                    allDay: info.allDay
-                  });
-                }
-                calendar.unselect(); // clear date selection
-              },
-              eventDidMount: function (info) {
-                const buttonsEl = document.createElement('div');
-                buttonsEl.classList.add('fc-event-buttons');
 
-                // Create Edit button
-                const editButton = document.createElement('button');
-                editButton.innerText = 'Edit';
-                editButton.classList.add('fc-event-button');
-                editButton.onclick = function () {
-                  const newTitle = prompt('Enter new title for the event:', info.event.title);
-                  if (newTitle !== null) {
-                    info.event.setProp('title', newTitle);
-                  }
-                };
-                buttonsEl.appendChild(editButton);
 
-                // Create Delete button
-                const deleteButton = document.createElement('button');
-                deleteButton.innerText = 'Delete';
-                deleteButton.classList.add('fc-event-button');
-                deleteButton.onclick = function () {
-                  Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      info.event.remove();
-                      Swal.fire(
-                        'Deleted!',
-                        'Your event has been deleted.',
-                        'success'
-                      );
-                    }
-                  });
-                };
-                buttonsEl.appendChild(deleteButton);
+        <script>
+          $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+            type: "line",
+            height: "70",
+            width: "100%",
+            lineWidth: "2",
+            lineColor: "#177dff",
+            fillColor: "rgba(23, 125, 255, 0.14)",
+          });
 
-                info.el.appendChild(buttonsEl);
-              }
-            });
+          $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+            type: "line",
+            height: "70",
+            width: "100%",
+            lineWidth: "2",
+            lineColor: "#f3545d",
+            fillColor: "rgba(243, 84, 93, .14)",
+          });
 
-            calendar.render();
-          } else {
-            console.error('Calendar element not found');
-          }
-        });
-      </script> -->
+          $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+            type: "line",
+            height: "70",
+            width: "100%",
+            lineWidth: "2",
+            lineColor: "#ffa534",
+            fillColor: "rgba(255, 165, 52, .14)",
+          });
+        </script>
+
 </body>
 
 </html>
