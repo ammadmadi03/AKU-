@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#resume').on('change', function() {
         // event.preventDefault();
         let formData = new FormData();
-        formData.append('res_file', $('#resume')[0].files[0]);
+        formData.append('file', $('#resume')[0].files[0]);
         console.log('file selected');
 
         $.ajax({
