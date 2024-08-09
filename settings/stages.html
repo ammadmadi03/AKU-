@@ -28,8 +28,8 @@
     </script>
 
     <!-- CSS Files -->
-     
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../assets/css/plugins.min.css" />
     <link rel="stylesheet" href="../assets/css/kaiadmin.min.css" />
@@ -107,7 +107,7 @@
                                 aria-controls="settingsDropdown">
                                 <i class="fas fa-cog"></i>
                                 <p>Settings</p>
-                                <span  class="caret"></span>
+                                <span class="caret"></span>
                             </a>
                             <div class="collapse" id="settingsDropdown">
                                 <ul class="nav nav-collapse">
@@ -137,7 +137,7 @@
             </div>
         </div>
         <!-- End Sidebar -->
-    <div class="main-panel">
+        <div class="main-panel">
             <div class="main-header">
                 <div class="main-header-logo">
                     <!-- Logo Header -->
@@ -370,9 +370,9 @@
                 </nav>
                 <!-- End Navbar -->
             </div>
-
             <div class="container">
                 <div class="page-inner">
+                    <!-- Stages Table -->
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Stages</h4>
@@ -384,6 +384,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -395,9 +396,10 @@
                     </div>
                 </div>
             </div>
-        
+
             <!-- Add/Edit Form Modal -->
-            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -408,6 +410,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="entityForm">
+                                <input type="hidden" id="stageId">
                                 <div class="form-group">
                                     <label for="entityName">Name</label>
                                     <input type="text" class="form-control" id="entityName" placeholder="Enter name">
@@ -420,171 +423,232 @@
                 </div>
             </div>
 
-             <!--   Core JS Files   -->
-      <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
-      <script src="../assets/js/core/popper.min.js"></script>
-      <script src="../assets/js/core/bootstrap.min.js"></script>
 
-      <!-- jQuery Scrollbar -->
-      <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-      <!-- Chart JS -->
-      <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+            <!--   Core JS Files   -->
+            <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
+            <script src="../assets/js/core/popper.min.js"></script>
+            <script src="../assets/js/core/bootstrap.min.js"></script>
 
-      <!-- jQuery Sparkline -->
-      <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-      <!-- Chart Circle -->
-      <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+            <!-- Chart JS -->
+            <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
 
-      <!-- Datatables -->
-      <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+            <!-- jQuery Sparkline -->
+            <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
-      <!-- Bootstrap Notify -->
-      <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Chart Circle -->
+            <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
 
-      <!-- jQuery Vector Maps -->
-      <script src="../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
-      <script src="../assets/js/plugin/jsvectormap/world.js"></script>
+            <!-- Datatables -->
+            <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
 
-      <!-- Sweet Alert -->
-      <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-      <!-- Kaiadmin JS -->
-      <script src="../assets/js/kaiadmin.min.js"></script>
-      <script>
-        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#177dff",
-          fillColor: "rgba(23, 125, 255, 0.14)",
-        });
+            <!-- jQuery Vector Maps -->
+            <script src="../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+            <script src="../assets/js/plugin/jsvectormap/world.js"></script>
 
-        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#f3545d",
-          fillColor: "rgba(243, 84, 93, .14)",
-        });
+            <!-- Sweet Alert -->
+            <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
-        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#ffa534",
-          fillColor: "rgba(255, 165, 52, .14)",
-        });
-      </script>
-        
+            <!-- Kaiadmin JS -->
+            <script src="../assets/js/kaiadmin.min.js"></script>
             <script>
-                let currentId = null;
-let stageCounter = 1;
+                $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#177dff",
+                    fillColor: "rgba(23, 125, 255, 0.14)",
+                });
 
-$(document).ready(function() {
-    loadEntities();
-});
+                $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#f3545d",
+                    fillColor: "rgba(243, 84, 93, .14)",
+                });
 
-function openForm(id = null, name = '') {
-    currentId = id;
-    $('#entityName').val(name);
-    $('#formModalLabel').text(id ? 'Edit Stage' : 'Add Stage');
-    $('#formModal').modal('show');
-}
+                $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#ffa534",
+                    fillColor: "rgba(255, 165, 52, .14)",
+                });
+            </script>
 
-function clearForm() {
-    $('#entityName').val('');
-}
+        <script>
+            // Fetch and display stages
+            async function fetchStages() {
+            try {
+            const response = await fetch('http://localhost:5150/api/Stages');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const stages = await response.json();
 
-function saveEntity() {
-    const name = $('#entityName').val();
-    if (!name) {
-        alert('Name is required');
-        return;
-    }
+            const tableBody = document.getElementById('stagesTableBody');
+            tableBody.innerHTML = '';
 
-    if (currentId) {
-        // Update existing entity
-        $('#' + currentId + ' .entityName').text(name);
-        updateLocalStorage(currentId, name);
-        currentId = null;
-    } else {
-        // Add new entity
-        const id = stageCounter++;
-        const row = `<tr id="${id}">
-                      <td>${id}</td>
-                      <td class="entityName">${name}</td>
-                      <td>
-                        <button class="btn btn-warning" onclick="openForm(${id}, '${name}')">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteEntity(${id})">Delete</button>
-                      </td>
-                    </tr>`;
-        $('#stagesTableBody').append(row);
-        saveToLocalStorage(id, name);
-    }
+            stages.forEach(stage => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <td>${stage.stageId}</td>
+            <td>${stage.stage}</td>
+            <td>${stage.isActive ? 'Active' : 'Inactive'}</td>
+            <td>
+                <button class="btn btn-warning" onclick="openEditForm(${stage.stageId})">Edit</button>
+                <button class="btn btn-danger" onclick="confirmDelete(${stage.stageId})">Delete</button>
+            </td>
+            `;
+            tableBody.appendChild(row);
+            });
+            } catch (error) {
+            console.error('Error fetching stages:', error);
+            Swal.fire('Error', 'Failed to fetch stages', 'error');
+            }
+            }
 
-    $('#formModal').modal('hide');
-}
+            // Open form modal for adding a new stage
+            function openForm() {
+            document.getElementById('formModalLabel').innerText = 'Add Stage';
+            document.getElementById('stageId').value = '';
+            document.getElementById('entityName').value = '';
+            $('#formModal').modal('show');
+            }
 
-function deleteEntity(id) {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $('#' + id).remove();
-            removeFromLocalStorage(id);
-            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-        }
-    });
-}
+            // Open form modal for editing an existing stage
+            async function openEditForm(stageId) {
+            document.getElementById('formModalLabel').innerText = 'Edit Stage';
 
-function saveToLocalStorage(id, name) {
-    const entities = JSON.parse(localStorage.getItem('stages')) || [];
-    entities.push({ id, name });
-    localStorage.setItem('stages', JSON.stringify(entities));
-}
+            try {
+            const response = await fetch(`http://localhost:5150/api/Stages/${stageId}`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const stage = await response.json();
 
-function updateLocalStorage(id, name) {
-    const entities = JSON.parse(localStorage.getItem('stages')) || [];
-    const index = entities.findIndex(e => e.id === id);
-    if (index !== -1) {
-        entities[index].name = name;
-        localStorage.setItem('stages', JSON.stringify(entities));
-    }
-}
+            document.getElementById('stageId').value = stage.stageId;
+            document.getElementById('entityName').value = stage.stage;
 
-function removeFromLocalStorage(id) {
-    let entities = JSON.parse(localStorage.getItem('stages')) || [];
-    entities = entities.filter(e => e.id !== id);
-    localStorage.setItem('stages', JSON.stringify(entities));
-}
+            $('#formModal').modal('show');
+            } catch (error) {
+            console.error('Error fetching stage:', error);
+            Swal.fire('Error', 'Failed to fetch stage', 'error');
+            }
+            }
 
-function loadEntities() {
-    const entities = JSON.parse(localStorage.getItem('stages')) || [];
-    entities.forEach(e => {
-        const row = `<tr id="${e.id}">
-                      <td>${e.id}</td>
-                      <td class="entityName">${e.name}</td>
-                      <td>
-                        <button class="btn btn-warning" onclick="openForm(${e.id}, '${e.name}')">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteEntity(${e.id})">Delete</button>
-                      </td>
-                    </tr>`;
-        $('#stagesTableBody').append(row);
-        stageCounter = Math.max(stageCounter, e.id + 1);
-    });
-}
-     </script>
+            // Close form modal
+            function closeForm() {
+            $('#formModal').modal('hide');
+            }
 
-    </body>
+            // Save a new or existing stage
+            async function saveEntity() {
+            const stageId = document.getElementById('stageId').value;
+            const entityName = document.getElementById('entityName').value;
+
+            if (!entityName) {
+            Swal.fire('Error', 'Please enter a stage name', 'error');
+            return;
+            }
+
+            try {
+            let response;
+            const data = { stage: entityName, isActive: true };
+
+            if (stageId) {
+            // Update existing stage
+            response = await fetch(`http://localhost:5150/api/Stages/${stageId}`, {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+            });
+            } else {
+            // Add new stage
+            response = await fetch('http://localhost:5150/api/Stages', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+            });
+            }
+
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            closeForm();
+            fetchStages();
+            } catch (error) {
+            console.error('Error saving stage:', error);
+            Swal.fire('Error', 'Failed to save stage', 'error');
+            }
+            }
+
+            // Confirm delete stage
+            function confirmDelete(stageId) {
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+            deleteStage(stageId);
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire(
+            'Cancelled',
+            'Your stage is safe :)',
+            'error'
+            );
+            }
+            });
+            }
+
+            // Delete stage
+            async function deleteStage(stageId) {
+            try {
+            const response = await fetch(`http://localhost:5150/api/Stages/${stageId}`, {
+            method: 'DELETE'
+            });
+
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            fetchStages();
+            Swal.fire(
+            'Deleted!',
+            'Your stage has been deleted.',
+            'success'
+            );
+            } catch (error) {
+            console.error('Error deleting stage:', error);
+            Swal.fire('Error', 'Failed to delete stage', 'error');
+            }
+            }
+
+            // Initialize the page by fetching stages
+            document.addEventListener('DOMContentLoaded', fetchStages);
+
+            // Expose functions to the global scope
+            window.openForm = openForm;
+            window.openEditForm = openEditForm;
+            window.confirmDelete = confirmDelete;
+            window.deleteStage = deleteStage;
+            window.saveEntity = saveEntity;
+            window.closeForm = closeForm;
+       </script>
+
+
+</body>
+
 </html>

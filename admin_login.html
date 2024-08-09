@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ADMIN</title>
-    <link rel="stylesheet" href="./assets/css/admin_login.css">
+    <link rel="stylesheet" href="./assets/css/admin_login.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -15,37 +16,71 @@
                 <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span>!</span>
             </h1>
             <form action="#" class="fl" id="loginForm">
-                <input type="text" name="Username" id="auser" placeholder="Enter Your Username" class="input-field">
-                <br>
-                <input type="password" name="password" id="apass" placeholder="Enter password" class="input-field">
-                <br>
+                <input type="text" name="Username" id="auser" placeholder="Enter Your Username" class="input-field" />
+                <br />
+                <input type="password" name="password" id="apass" placeholder="Enter password" class="input-field" />
+                <br />
                 <button type="button" class="lbtn" id="lBtn">Log In</button>
-                <br><br>
+                <br /><br />
             </form>
         </div>
     </div>
 
-    <script type="module">
-        var uInput = document.getElementById('auser');
-        var passInput = document.getElementById('apass');
-        var loginBtn = document.getElementById('lBtn');
+    <script>
+        document.getElementById('lBtn').addEventListener('click', function () {
+            var username = document.getElementById('auser').value;
+            var password = document.getElementById('apass').value;
 
-        if (loginBtn) {
-            loginBtn.addEventListener('click', function () {
-
-                var username = uInput.value;
-                var password = passInput.value;
-
-                if (username === 'ammad' && password === '123456') {
-
-                    window.location.href = 'index.html';
-                } else {
-
-                    alert('Invalid username or password. Please try again.');
-                }
-            });
-        }
+            fetch('http://localhost:5150/api/Admin/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        // Handle non-200 responses
+                        return response.json().then(data => {
+                            throw new Error(data.message || 'An error occurred');
+                        });
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'Login Successful',
+                            text: 'Welcome back!',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location.href = 'index.html';
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Login Failed',
+                            text: 'Invalid username or password. Please try again.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: 'Error',
+                        text: error.message || 'An error occurred. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                });
+        });
     </script>
+
 </body>
 
 </html>

@@ -6,7 +6,7 @@
     <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="../assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
-    
+
 
     <!-- Fonts and icons -->
     <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
@@ -29,8 +29,8 @@
     </script>
 
     <!-- CSS Files -->
-     
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../assets/css/plugins.min.css" />
     <link rel="stylesheet" href="../assets/css/kaiadmin.min.css" />
@@ -108,7 +108,7 @@
                                 aria-controls="settingsDropdown">
                                 <i class="fas fa-cog"></i>
                                 <p>Settings</p>
-                                <span  class="caret"></span>
+                                <span class="caret"></span>
                             </a>
                             <div class="collapse" id="settingsDropdown">
                                 <ul class="nav nav-collapse">
@@ -387,6 +387,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -399,6 +400,7 @@
                 </div>
             </div>
 
+            
             <!-- Add/Edit Form Modal -->
             <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
                 aria-hidden="true">
@@ -412,6 +414,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="entityForm">
+                                <input type="hidden" id="departmentId"> <!-- Hidden input for department ID -->
                                 <div class="form-group">
                                     <label for="entityName">Name</label>
                                     <input type="text" class="form-control" id="entityName" placeholder="Enter name">
@@ -424,171 +427,233 @@
                 </div>
             </div>
 
-             <!--   Core JS Files   -->
-      <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
-      <script src="../assets/js/core/popper.min.js"></script>
-      <script src="../assets/js/core/bootstrap.min.js"></script>
 
-      <!-- jQuery Scrollbar -->
-      <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!--   Core JS Files   -->
+            <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
+            <script src="../assets/js/core/popper.min.js"></script>
+            <script src="../assets/js/core/bootstrap.min.js"></script>
 
-      <!-- Chart JS -->
-      <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-      <!-- jQuery Sparkline -->
-      <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+            <!-- Chart JS -->
+            <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
 
-      <!-- Chart Circle -->
-      <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+            <!-- jQuery Sparkline -->
+            <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
-      <!-- Datatables -->
-      <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+            <!-- Chart Circle -->
+            <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
 
-      <!-- Bootstrap Notify -->
-      <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Datatables -->
+            <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
 
-      <!-- jQuery Vector Maps -->
-      <script src="../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
-      <script src="../assets/js/plugin/jsvectormap/world.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-      <!-- Sweet Alert -->
-      <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- jQuery Vector Maps -->
+            <script src="../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+            <script src="../assets/js/plugin/jsvectormap/world.js"></script>
 
-      <!-- Kaiadmin JS -->
-      <script src="../assets/js/kaiadmin.min.js"></script>
-      <script>
-        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#177dff",
-          fillColor: "rgba(23, 125, 255, 0.14)",
-        });
+            <!-- Sweet Alert -->
+            <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
-        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#f3545d",
-          fillColor: "rgba(243, 84, 93, .14)",
-        });
-
-        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-          type: "line",
-          height: "70",
-          width: "100%",
-          lineWidth: "2",
-          lineColor: "#ffa534",
-          fillColor: "rgba(255, 165, 52, .14)",
-        });
-      </script>
-        
+            <!-- Kaiadmin JS -->
+            <script src="../assets/js/kaiadmin.min.js"></script>
             <script>
-                let currentId = null;
-                let departmentCounter = 1;
-
-                $(document).ready(function () {
-                    loadEntities();
+                $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#177dff",
+                    fillColor: "rgba(23, 125, 255, 0.14)",
                 });
 
-                function openForm(id = null, name = '') {
-                    currentId = id;
-                    $('#entityName').val(name);
-                    $('#formModalLabel').text(id ? 'Edit Department' : 'Add Department');
+                $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#f3545d",
+                    fillColor: "rgba(243, 84, 93, .14)",
+                });
+
+                $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+                    type: "line",
+                    height: "70",
+                    width: "100%",
+                    lineWidth: "2",
+                    lineColor: "#ffa534",
+                    fillColor: "rgba(255, 165, 52, .14)",
+                });
+            </script>
+
+            <script>
+                // Fetch and display departments
+                async function fetchDepartments() {
+                    try {
+                        const response = await fetch('http://localhost:5150/api/Departments');
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        const departments = await response.json();
+
+                        const tableBody = document.getElementById('departmentsTableBody');
+                        tableBody.innerHTML = '';
+
+                        departments.forEach(department => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+              <td>${department.departmentId}</td>
+              <td>${department.departmentName}</td>
+              <td>${department.isActive ? 'Active' : 'Inactive'}</td>
+              <td>
+                  <button class="btn btn-warning" onclick="openEditForm(${department.departmentId})">Edit</button>
+                  <button class="btn btn-danger" onclick="confirmDelete(${department.departmentId})">Delete</button>
+              </td>
+          `;
+                            tableBody.appendChild(row);
+                        });
+                    } catch (error) {
+                        console.error('Error fetching departments:', error);
+                        Swal.fire('Error', 'Failed to fetch departments', 'error');
+                    }
+                }
+
+                // Open form modal for adding a new department
+                function openForm() {
+                    document.getElementById('formModalLabel').innerText = 'Add Department';
+                    document.getElementById('departmentId').value = '';
+                    document.getElementById('entityName').value = '';
                     $('#formModal').modal('show');
                 }
 
-                function clearForm() {
-                    $('#entityName').val('');
+                // Open form modal for editing an existing department
+                async function openEditForm(departmentId) {
+                    document.getElementById('formModalLabel').innerText = 'Edit Department';
+
+                    try {
+                        const response = await fetch(`http://localhost:5150/api/Departments/${departmentId}`);
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        const department = await response.json();
+
+                        console.log('Department:', department); // Debugging line
+
+                        document.getElementById('departmentId').value = department.departmentId;
+                        document.getElementById('entityName').value = department.departmentName;
+
+                        $('#formModal').modal('show');
+                    } catch (error) {
+                        console.error('Error fetching department:', error);
+                        Swal.fire('Error', 'Failed to fetch department', 'error');
+                    }
                 }
 
-                function saveEntity() {
-                    const name = $('#entityName').val();
-                    if (!name) {
-                        alert('Name is required');
-                        return;
-                    }
 
-                    if (currentId) {
-                        // Update existing entity
-                        $('#' + currentId + ' .entityName').text(name);
-                        updateLocalStorage(currentId, name);
-                        currentId = null;
-                    } else {
-                        // Add new entity
-                        const id = departmentCounter++;
-                        const row = `<tr id="${id}">
-                      <td>${id}</td>
-                      <td class="entityName">${name}</td>
-                      <td>
-                        <button class="btn btn-warning" onclick="openForm(${id}, '${name}')">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteEntity(${id})">Delete</button>
-                      </td>
-                    </tr>`;
-                        $('#departmentsTableBody').append(row);
-                        saveToLocalStorage(id, name);
-                    }
-
+                // Close form modal
+                function closeForm() {
                     $('#formModal').modal('hide');
                 }
 
-                function deleteEntity(id) {
+                // Save a new or existing department
+                async function saveEntity() {
+                    const departmentId = document.getElementById('departmentId').value;
+                    const entityName = document.getElementById('entityName').value;
+
+                    if (!entityName) {
+                        Swal.fire('Error', 'Please enter a department name', 'error');
+                        return;
+                    }
+
+                    try {
+                        let response;
+                        const data = { departmentName: entityName, isActive: true };
+
+                        if (departmentId) {
+                            // Update existing department
+                            response = await fetch(`http://localhost:5150/api/Departments/${departmentId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            });
+                        } else {
+                            // Add new department
+                            response = await fetch('http://localhost:5150/api/Departments', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            });
+                        }
+
+                        if (!response.ok) throw new Error('Network response was not ok');
+
+                        closeForm();
+                        fetchDepartments();
+                    } catch (error) {
+                        console.error('Error saving department:', error);
+                        Swal.fire('Error', 'Failed to save department', 'error');
+                    }
+                }
+
+                // Confirm delete department
+                function confirmDelete(departmentId) {
                     Swal.fire({
                         title: 'Are you sure?',
                         text: "You won't be able to revert this!",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                        reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $('#' + id).remove();
-                            removeFromLocalStorage(id);
-                            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+                            deleteDepartment(departmentId);
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            Swal.fire(
+                                'Cancelled',
+                                'Your department is safe :)',
+                                'error'
+                            )
                         }
                     });
                 }
 
-                function saveToLocalStorage(id, name) {
-                    const entities = JSON.parse(localStorage.getItem('departments')) || [];
-                    entities.push({ id, name });
-                    localStorage.setItem('departments', JSON.stringify(entities));
-                }
+                // Delete department
+                async function deleteDepartment(departmentId) {
+                    try {
+                        const response = await fetch(`http://localhost:5150/api/Departments${departmentId}`, {
+                            method: 'DELETE'
+                        });
 
-                function updateLocalStorage(id, name) {
-                    const entities = JSON.parse(localStorage.getItem('departments')) || [];
-                    const index = entities.findIndex(e => e.id === id);
-                    if (index !== -1) {
-                        entities[index].name = name;
-                        localStorage.setItem('departments', JSON.stringify(entities));
+                        if (!response.ok) throw new Error('Network response was not ok');
+
+                        fetchDepartments();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your department has been deleted.',
+                            'success'
+                        );
+                    } catch (error) {
+                        console.error('Error deleting department:', error);
+                        Swal.fire('Error', 'Failed to delete department', 'error');
                     }
                 }
 
-                function removeFromLocalStorage(id) {
-                    let entities = JSON.parse(localStorage.getItem('departments')) || [];
-                    entities = entities.filter(e => e.id !== id);
-                    localStorage.setItem('departments', JSON.stringify(entities));
-                }
+                // Initialize the page by fetching departments
+                document.addEventListener('DOMContentLoaded', fetchDepartments);
 
-                function loadEntities() {
-                    const entities = JSON.parse(localStorage.getItem('departments')) || [];
-                    entities.forEach(e => {
-                        const row = `<tr id="${e.id}">
-                      <td>${e.id}</td>
-                      <td class="entityName">${e.name}</td>
-                      <td>
-                        <button class="btn btn-warning" onclick="openForm(${e.id}, '${e.name}')">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteEntity(${e.id})">Delete</button>
-                      </td>
-                    </tr>`;
-                        $('#departmentsTableBody').append(row);
-                        departmentCounter = Math.max(departmentCounter, e.id + 1);
-                    });
-                }
+                // Expose functions to the global scope
+                window.openForm = openForm;
+                window.openEditForm = openEditForm;
+                window.confirmDelete = confirmDelete;
+                window.deleteDepartment = deleteDepartment;
+                window.saveEntity = saveEntity;
+                window.closeForm = closeForm;
             </script>
 
-    </body>
+</body>
+
 </html>
