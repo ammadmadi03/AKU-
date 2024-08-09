@@ -6,7 +6,7 @@ import json
 import os
 import io
 
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_lg")
 
 def get_name(doc):
     for ent in doc.ents:
@@ -24,6 +24,15 @@ def get_phone_number(text):
     phone_match = re.search(phone_pattern, text)
     if phone_match:
         return phone_match.group(0).strip()
+
+def get_skills(text):
+    skills_list = [" .NET", "Angular", "Bootstrap", "C#", "C++", "CSS", "Django", "Express.js", "Flask", "Git", "HTML", "Java", "JavaScript", "jQuery", "Keras", "Kotlin", "Laravel", "LaTeX", "Matlab", "Microsoft SQL Server", "MongoDB", "MySQL", "Node.js", "NumPy", "OpenCV", "Oracle", "Pandas", "PHP", "PostgreSQL", "PyTorch", "Python", "React.js", "Ruby", "SpaCy", "SPSS", "SQL", "SQLite", "Swift", "TensorFlow", "TypeScript", "Vue.js"]
+    
+    skills = []
+    for skill in skills_list:
+        if skill.lower() in text.lower():
+            skills.append(skill)
+    return ', '.join(skills)
 
 def extract_text(file):
     file_stream = io.BytesIO(file.read())
@@ -91,10 +100,11 @@ def parse_resume(file):
     
     doc = nlp(text)
 
-    parsed_data = {"name": "", "email": "", "phone": "", "education": [], "experience": [], "skills": []}
+    parsed_data = {"name": "", "email": "", "phone": "", "education": [], "experience": [], "skills": ""}
     parsed_data["name"] = get_name(doc)
     parsed_data["email"] = get_email(text)
     parsed_data["phone"] = get_phone_number(text)
+    parsed_data["skills"] = get_skills(text)
     return parsed_data
 
 if __name__ == "__main__":
