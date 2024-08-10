@@ -110,7 +110,7 @@
                                 <p>Settings</p>
                                 <span class="caret"></span>
                             </a>
-                            <div  id="settingsDropdown">
+                            <div id="settingsDropdown">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="./departments.html">
@@ -128,7 +128,7 @@
                                         <a href="./examtypes.html">
                                             <i class="fa-solid fa-list-check"></i>
                                             <span class="sub-item">Exam Types</span>
-                                        </a> 
+                                        </a>
                                     </li>
                                     <li>
                                         <a href="./exams.html">
@@ -395,7 +395,8 @@
                 <div class="page-inner">
                     <!-- Departments Table -->
                     <div class="card shadow-lg rounded">
-                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <div
+                            class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                             <h4 class="card-title mb-0">Departments</h4>
                             <button class="btn btn-light" onclick="openDepartmentForm()">
                                 <i class="fas fa-plus"></i> Add Department
@@ -419,9 +420,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Add/Edit Department Form Modal -->
-            <div class="modal fade" id="departmentFormModal" tabindex="-1" aria-labelledby="departmentFormModalLabel" aria-hidden="true">
+            <div class="modal fade" id="departmentFormModal" tabindex="-1" aria-labelledby="departmentFormModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content border-0 rounded-lg shadow-lg">
                         <div class="modal-header bg-primary text-white rounded-top">
@@ -429,14 +431,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="departmentForm">
+                            <form id="departmentForm" onsubmit="saveEntity(event)">
                                 <input type="hidden" id="departmentId">
                                 <div class="mb-3">
                                     <label for="departmentName" class="form-label">Department Name</label>
-                                    <input type="text" class="form-control" id="departmentName" placeholder="Enter department name" required>
+                                    <input type="text" class="form-control" id="departmentName"
+                                        placeholder="Enter department name" required>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-outline-secondary me-2" onclick="clearDepartmentForm()">Clear</button>
+                                    <button type="button" class="btn btn-outline-secondary me-2"
+                                        onclick="clearDepartmentForm()">Clear</button>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
@@ -444,9 +448,9 @@
                     </div>
                 </div>
             </div>
-            
-          
-            
+
+
+
 
 
             <!--   Core JS Files   -->
@@ -511,6 +515,7 @@
             </script>
 
             <script>
+
                 // Fetch and display departments
                 async function fetchDepartments() {
                     try {
@@ -524,14 +529,14 @@
                         departments.forEach(department => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-              <td>${department.departmentId}</td>
-              <td>${department.departmentName}</td>
-              <td>${department.isActive ? 'Active' : 'Inactive'}</td>
-              <td>
-                  <button class="btn btn-warning" onclick="openEditForm(${department.departmentId})">Edit</button>
-                  <button class="btn btn-danger" onclick="confirmDelete(${department.departmentId})">Delete</button>
-              </td>
-          `;
+                <td>${department.departmentId}</td>
+                <td>${department.departmentName}</td>
+                <td>${department.isActive ? 'Active' : 'Inactive'}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="openEditForm(${department.departmentId})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(${department.departmentId})">Delete</button>
+                </td>
+            `;
                             tableBody.appendChild(row);
                         });
                     } catch (error) {
@@ -541,77 +546,75 @@
                 }
 
                 // Open form modal for adding a new department
-                function openForm() {
-                    document.getElementById('formModalLabel').innerText = 'Add Department';
+                function openDepartmentForm() {
+                    document.getElementById('departmentFormModalLabel').innerText = 'Add Department';
                     document.getElementById('departmentId').value = '';
-                    document.getElementById('entityName').value = '';
-                    $('#formModal').modal('show');
+                    document.getElementById('departmentName').value = '';
+                    $('#departmentFormModal').modal('show');
                 }
 
                 // Open form modal for editing an existing department
                 async function openEditForm(departmentId) {
-                    document.getElementById('formModalLabel').innerText = 'Edit Department';
+                    document.getElementById('departmentFormModalLabel').innerText = 'Edit Department';
 
                     try {
                         const response = await fetch(`http://localhost:5085/api/Departments/${departmentId}`);
                         if (!response.ok) throw new Error('Network response was not ok');
                         const department = await response.json();
 
-                        console.log('Department:', department); // Debugging line
-
                         document.getElementById('departmentId').value = department.departmentId;
-                        document.getElementById('entityName').value = department.departmentName;
+                        document.getElementById('departmentName').value = department.departmentName;
 
-                        $('#formModal').modal('show');
+                        $('#departmentFormModal').modal('show');
                     } catch (error) {
                         console.error('Error fetching department:', error);
                         Swal.fire('Error', 'Failed to fetch department', 'error');
                     }
                 }
 
-
-                // Close form modal
-                function closeForm() {
-                    $('#formModal').modal('hide');
+                // Clear form fields
+                function clearDepartmentForm() {
+                    document.getElementById('departmentId').value = '';
+                    document.getElementById('departmentName').value = '';
                 }
 
                 // Save a new or existing department
-                async function saveEntity() {
-                    const departmentId = document.getElementById('departmentId').value;
-                    const entityName = document.getElementById('entityName').value;
+                async function saveEntity(event) {
+                    event.preventDefault(); // Prevent form from submitting the default way
 
-                    if (!entityName) {
+                    const departmentId = document.getElementById('departmentId').value;
+                    const departmentName = document.getElementById('departmentName').value;
+
+                    if (!departmentName) {
                         Swal.fire('Error', 'Please enter a department name', 'error');
                         return;
                     }
 
                     try {
                         let response;
-                        const data = { departmentName: entityName, isActive: true };
+                        const data = { departmentName, isActive: true };
 
                         if (departmentId) {
                             // Update existing department
                             response = await fetch(`http://localhost:5085/api/Departments/${departmentId}`, {
                                 method: 'PUT',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
+                                headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify(data)
                             });
+                            Swal.fire('Updated!', 'Department has been updated successfully.', 'success');
                         } else {
                             // Add new department
                             response = await fetch('http://localhost:5085/api/Departments', {
                                 method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
+                                headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify(data)
                             });
+                            Swal.fire('Added!', 'Department has been added successfully.', 'success');
                         }
 
                         if (!response.ok) throw new Error('Network response was not ok');
 
-                        closeForm();
+                        $('#departmentFormModal').modal('hide');
                         fetchDepartments();
                     } catch (error) {
                         console.error('Error saving department:', error);
@@ -633,11 +636,7 @@
                         if (result.isConfirmed) {
                             deleteDepartment(departmentId);
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            Swal.fire(
-                                'Cancelled',
-                                'Your department is safe :)',
-                                'error'
-                            )
+                            Swal.fire('Cancelled', 'Your department is safe :)', 'error');
                         }
                     });
                 }
@@ -645,18 +644,14 @@
                 // Delete department
                 async function deleteDepartment(departmentId) {
                     try {
-                        const response = await fetch(`http://localhost:5085/api/Departments${departmentId}`, {
+                        const response = await fetch(`http://localhost:5085/api/Departments/${departmentId}`, {
                             method: 'DELETE'
                         });
 
                         if (!response.ok) throw new Error('Network response was not ok');
 
                         fetchDepartments();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your department has been deleted.',
-                            'success'
-                        );
+                        Swal.fire('Deleted!', 'Your department has been deleted.', 'success');
                     } catch (error) {
                         console.error('Error deleting department:', error);
                         Swal.fire('Error', 'Failed to delete department', 'error');
@@ -667,12 +662,14 @@
                 document.addEventListener('DOMContentLoaded', fetchDepartments);
 
                 // Expose functions to the global scope
-                window.openForm = openForm;
+                window.openDepartmentForm = openDepartmentForm;
                 window.openEditForm = openEditForm;
                 window.confirmDelete = confirmDelete;
                 window.deleteDepartment = deleteDepartment;
                 window.saveEntity = saveEntity;
-                window.closeForm = closeForm;
+                window.clearDepartmentForm = clearDepartmentForm;
+
+
             </script>
 
 </body>
