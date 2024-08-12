@@ -38,27 +38,23 @@ def get_education(text):
     education = []
 
     pattern = re.compile(r'''
-                        (?i)
-                        (?:
-                            \bB.?\s?Tech:?\b|
-                            \bB\.?(?:[AS]\.?|Eng|Sc)\b|
-                            \bM(?:\.[AS]\.|\.Eng|Sc)\b|
-                            \b(?:Master|Bachelor)(?:'?s)?\b|
-                            \bDoctor(?:ate|al)?\b|
-                            \b(?:Under|Post)?[-\s]Graduate\b
-                            \bPh\.?D\.?\b|
-                            \bD\.?Sc\.?\b|
-                            \b[AO][-\s]?levels?\b|
-                            \bInter(?:mediate)?\b|
-                            \bMatric(?:ulation)?\b
-                        )
-                        (?::|of|in)?[^\n\t]+\b
-                        ''', re.VERBOSE)
+        (?i)
+        (?:
+            \bB.?\s?Tech:?\b|
+            \bB\.?(?:[AS]\.?|Eng|Sc)\b|
+            \bM(?:\.[AS]\.|\.Eng|Sc)\b|
+            \b(?:Master|Bachelor)(?:'?s)?\b|
+            \bDoctor(?:ate|al)?\b|
+            \b(?:Under|Post)?[-\s]Graduate\b
+            \bPh\.?D\.?\b|
+            \bD\.?Sc\.?\b|
+            \b[AO][-\s]?levels?\b|
+            \bInter(?:mediate)?\b|
+            \bMatric(?:ulation)?\b
+        )
+        (?::|of|in)?[^\n\t]+\b
+        ''', re.VERBOSE)
 
-    # for line in text.splitlines():
-    #     if pattern.search(line):
-    #         education.append(line.strip())
-    
     matches = re.findall(pattern, text)
     for match in matches:
         education.append(match.strip())
