@@ -10,35 +10,38 @@
 </head>
 
 <body>
-    <div class="login-container">
-        <div class="login-form" id="dl">
-            <h1 class="welcome-message">
-                <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span>!</span>
-            </h1>
-            <form action="#" class="fl" id="loginForm">
-                <input type="text" name="Username" id="auser" placeholder="Enter Your Username" class="input-field" />
-                <br />
-                <input type="password" name="password" id="apass" placeholder="Enter password" class="input-field" />
-                <br />
-                <button type="button" class="lbtn" id="lBtn">Log In</button>
-                <br /><br />
-            </form>
+    <div class="background">
+        <div class="login-container">
+            <div class="title-container">
+                <h1 class="title">AKU</h1>
+            </div>
+            <div class="login-form" id="dl">
+                <h2 class="welcome-message">
+                    <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span>!</span>
+                </h2>
+                <form action="#" class="fl" id="loginForm">
+                    <input type="text" name="Username" id="auser" placeholder="Enter Your Username" class="input-field" />
+                    <input type="password" name="password" id="apass" placeholder="Enter Your Password" class="input-field" />
+                    <button type="button" class="lbtn" id="lBtn">Log In</button>
+                </form>
+            </div>
         </div>
     </div>
+
 
     <script>
         document.getElementById('lBtn').addEventListener('click', function () {
             var username = document.getElementById('auser').value;
             var password = document.getElementById('apass').value;
 
-            fetch('http://localhost:5150/api/Admin/login', {
+            fetch('http://localhost:5085/api/Admin/login', {  // Updated URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: username,
-                    password: password
+                    Username: username,
+                    Password: password
                 })
             })
                 .then(response => {
@@ -79,6 +82,7 @@
                     });
                 });
         });
+
     </script>
 
 </body>

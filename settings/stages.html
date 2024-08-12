@@ -37,6 +37,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        
+    </style>
 
 </head>
 
@@ -109,7 +112,7 @@
                                 <p>Settings</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="settingsDropdown">
+                            <div  id="settingsDropdown">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="./departments.html">
@@ -124,9 +127,27 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="./tests.html">
+                                        <a href="./examtypes.html">
+                                            <i class="fa-solid fa-list-check"></i>
+                                            <span class="sub-item">Exam Types</span>
+                                        </a> 
+                                    </li>
+                                    <li>
+                                        <a href="./exams.html">
                                             <i class="fa-solid fa-file-alt"></i>
-                                            <span class="sub-item">Tests</span>
+                                            <span class="sub-item">Exams</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./questiontypes.html" class="dropdown-item" data-toggle="collapse">
+                                            <i class="fa-solid fa-question-circle"></i>
+                                            <span class="sub-item">Question Types</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./Question.html" class="dropdown-item" data-toggle="collapse">
+                                            <i class="fa-solid fa-question"></i>
+                                            <span class="sub-item">Questions</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -373,13 +394,15 @@
             <div class="container">
                 <div class="page-inner">
                     <!-- Stages Table -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Stages</h4>
-                            <button class="btn btn-primary" onclick="openForm()">Add Stage</button>
+                    <div class="card shadow-sm rounded">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h4 class="card-title mb-0">Stages</h4>
+                            <button class="btn btn-light" onclick="openForm()">
+                                <i class="fas fa-plus"></i> Add Stage
+                            </button>
                         </div>
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -396,34 +419,32 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Add/Edit Form Modal -->
-            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="formModalLabel">Form</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+            
+            <!-- Add/Edit Stage Form Modal -->
+            <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 rounded-lg shadow-lg">
+                        <div class="modal-header border-0 bg-primary text-white rounded-top">
+                            <h5 class="modal-title" id="formModalLabel">Add/Edit Stage</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="entityForm">
                                 <input type="hidden" id="stageId">
-                                <div class="form-group">
-                                    <label for="entityName">Name</label>
-                                    <input type="text" class="form-control" id="entityName" placeholder="Enter name">
+                                <div class="mb-3">
+                                    <label for="entityName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="entityName" placeholder="Enter name" required>
                                 </div>
-                                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
-                                <button type="button" class="btn btn-primary" onclick="saveEntity()">Save</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-outline-secondary me-2" onclick="clearForm()">Clear</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-
+            
 
             <!--   Core JS Files   -->
             <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
@@ -490,7 +511,7 @@
             // Fetch and display stages
             async function fetchStages() {
             try {
-            const response = await fetch('http://localhost:5150/api/Stages');
+            const response = await fetch('http://localhost:5085/api/Stages');
             if (!response.ok) throw new Error('Network response was not ok');
             const stages = await response.json();
 
@@ -501,7 +522,7 @@
             const row = document.createElement('tr');
             row.innerHTML = `
             <td>${stage.stageId}</td>
-            <td>${stage.stage}</td>
+            <td>${stage.stageName}</td>
             <td>${stage.isActive ? 'Active' : 'Inactive'}</td>
             <td>
                 <button class="btn btn-warning" onclick="openEditForm(${stage.stageId})">Edit</button>
@@ -529,12 +550,12 @@
             document.getElementById('formModalLabel').innerText = 'Edit Stage';
 
             try {
-            const response = await fetch(`http://localhost:5150/api/Stages/${stageId}`);
+            const response = await fetch(`http://localhost:5085/api/Stages/${stageId}`);
             if (!response.ok) throw new Error('Network response was not ok');
             const stage = await response.json();
 
             document.getElementById('stageId').value = stage.stageId;
-            document.getElementById('entityName').value = stage.stage;
+            document.getElementById('entityName').value = stage.stageName;
 
             $('#formModal').modal('show');
             } catch (error) {
@@ -564,7 +585,7 @@
 
             if (stageId) {
             // Update existing stage
-            response = await fetch(`http://localhost:5150/api/Stages/${stageId}`, {
+            response = await fetch(`http://localhost:5085/api/Stages/${stageId}`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json'
@@ -573,7 +594,7 @@
             });
             } else {
             // Add new stage
-            response = await fetch('http://localhost:5150/api/Stages', {
+            response = await fetch('http://localhost:5085/api/Stages', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
@@ -618,7 +639,7 @@
             // Delete stage
             async function deleteStage(stageId) {
             try {
-            const response = await fetch(`http://localhost:5150/api/Stages/${stageId}`, {
+            const response = await fetch(`http://localhost:5085/api/Stages/${stageId}`, {
             method: 'DELETE'
             });
 

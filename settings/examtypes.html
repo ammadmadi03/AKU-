@@ -6,8 +6,6 @@
     <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="../assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
-
-
     <!-- Fonts and icons -->
     <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -110,7 +108,7 @@
                                 <p>Settings</p>
                                 <span class="caret"></span>
                             </a>
-                            <div id="settingsDropdown">
+                            <div  id="settingsDropdown">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="./departments.html">
@@ -128,7 +126,7 @@
                                         <a href="./examtypes.html">
                                             <i class="fa-solid fa-list-check"></i>
                                             <span class="sub-item">Exam Types</span>
-                                        </a>
+                                        </a> 
                                     </li>
                                     <li>
                                         <a href="./exams.html">
@@ -390,29 +388,27 @@
                 </nav>
                 <!-- End Navbar -->
             </div>
-
             <div class="container">
                 <div class="page-inner">
-                    <!-- Departments Table -->
-                    <div class="card shadow-lg rounded">
-                        <div
-                            class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0">Departments</h4>
-                            <button class="btn btn-light" onclick="openDepartmentForm()">
-                                <i class="fas fa-plus"></i> Add Department
+                    <!-- Exam Types Table -->
+                    <div class="card shadow-sm rounded">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h4 class="card-title mb-0">Exam Types</h4>
+                            <button class="btn btn-light" onclick="openExamTypeForm()">
+                                <i class="fas fa-plus"></i> Add Exam Type
                             </button>
                         </div>
                         <div class="card-body">
-                            <table class="table table-hover">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Exam Type Name</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="departmentsTableBody">
+                                <tbody id="examTypesTableBody">
                                     <!-- Dynamic Content -->
                                 </tbody>
                             </table>
@@ -420,38 +416,35 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Add/Edit Department Form Modal -->
-            <div class="modal fade" id="departmentFormModal" tabindex="-1" aria-labelledby="departmentFormModalLabel"
-                aria-hidden="true">
+            
+            <!-- Add/Edit Exam Type Form Modal -->
+            <div class="modal fade" id="examTypeFormModal" tabindex="-1" aria-labelledby="examTypeFormModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content border-0 rounded-lg shadow-lg">
-                        <div class="modal-header bg-primary text-white rounded-top">
-                            <h5 class="modal-title" id="departmentFormModalLabel">Add/Edit Department</h5>
+                        <div class="modal-header bg-success text-white rounded-top">
+                            <h5 class="modal-title" id="examTypeFormModalLabel">Add/Edit Exam Type</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="departmentForm" onsubmit="saveEntity(event)">
-                                <input type="hidden" id="departmentId">
+                            <form id="examTypeForm">
+                                <input type="hidden" id="examTypeId">
                                 <div class="mb-3">
-                                    <label for="departmentName" class="form-label">Department Name</label>
-                                    <input type="text" class="form-control" id="departmentName"
-                                        placeholder="Enter department name" required>
+                                    <label for="examTypeName" class="form-label">Exam Type Name</label>
+                                    <input type="text" class="form-control" id="examTypeName" placeholder="Enter exam type name" required>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-outline-secondary me-2"
-                                        onclick="clearDepartmentForm()">Clear</button>
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-outline-secondary me-2" onclick="clearExamTypeForm()">Clear</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
+            
+        
+            
+            
 
             <!--   Core JS Files   -->
             <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
@@ -516,162 +509,145 @@
 
             <script>
 
-                // Fetch and display departments
-                async function fetchDepartments() {
-                    try {
-                        const response = await fetch('http://localhost:5085/api/Departments');
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        const departments = await response.json();
+document.addEventListener('DOMContentLoaded', function () {
+    fetchExamTypes();
+});
 
-                        const tableBody = document.getElementById('departmentsTableBody');
-                        tableBody.innerHTML = '';
+const examTypesApiUrl = 'http://localhost:5085/api/ExamType';
 
-                        departments.forEach(department => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                <td>${department.departmentId}</td>
-                <td>${department.departmentName}</td>
-                <td>${department.isActive ? 'Active' : 'Inactive'}</td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="openEditForm(${department.departmentId})">Edit</button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(${department.departmentId})">Delete</button>
-                </td>
-            `;
-                            tableBody.appendChild(row);
-                        });
-                    } catch (error) {
-                        console.error('Error fetching departments:', error);
-                        Swal.fire('Error', 'Failed to fetch departments', 'error');
-                    }
-                }
+function fetchExamTypes() {
+    fetch(examTypesApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('examTypesTableBody');
+            tableBody.innerHTML = '';
+            data.forEach(type => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${type.examTypeId}</td>
+                    <td>${type.examTypeName}</td>
+                    <td>${type.isActive ? 'Active' : 'Inactive'}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openExamTypeForm(${type.examTypeId})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteExamType(${type.examTypeId})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching exam types:', error));
+}
 
-                // Open form modal for adding a new department
-                function openDepartmentForm() {
-                    document.getElementById('departmentFormModalLabel').innerText = 'Add Department';
-                    document.getElementById('departmentId').value = '';
-                    document.getElementById('departmentName').value = '';
-                    $('#departmentFormModal').modal('show');
-                }
+function openExamTypeForm(examTypeId = null) {
+    if (examTypeId) {
+        // Edit existing exam type
+        fetch(`${examTypesApiUrl}/${examTypeId}`)
+            .then(response => response.json())
+            .then(type => {
+                document.getElementById('examTypeId').value = type.examTypeId;
+                document.getElementById('examTypeName').value = type.examTypeName || ''; // Default to empty if undefined
+                document.getElementById('examTypeFormModalLabel').textContent = 'Edit Exam Type';
+                $('#examTypeFormModal').modal('show');
+            })
+            .catch(error => console.error('Error fetching exam type details:', error));
+    } else {
+        // Add new exam type
+        document.getElementById('examTypeId').value = '';
+        document.getElementById('examTypeName').value = '';
+        document.getElementById('examTypeFormModalLabel').textContent = 'Add Exam Type';
+        $('#examTypeFormModal').modal('show');
+    }
+}
 
-                // Open form modal for editing an existing department
-                async function openEditForm(departmentId) {
-                    document.getElementById('departmentFormModalLabel').innerText = 'Edit Department';
+function saveExamType() {
+    const examTypeId = document.getElementById('examTypeId').value;
+    const examTypeName = document.getElementById('examTypeName').value;
 
-                    try {
-                        const response = await fetch(`http://localhost:5085/api/Departments/${departmentId}`);
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        const department = await response.json();
+    const method = examTypeId ? 'PUT' : 'POST';
+    const url = examTypeId ? `${examTypesApiUrl}/${examTypeId}` : examTypesApiUrl;
+    const data = {
+        examTypeName: examTypeName,
+        isActive: true
+    };
 
-                        document.getElementById('departmentId').value = department.departmentId;
-                        document.getElementById('departmentName').value = department.departmentName;
+    fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text(); // Read response as text for error messages
+        }
+        return response.json(); // Parse as JSON if response is OK
+    })
+    .then(result => {
+        if (typeof result === 'object') {
+            $('#examTypeFormModal').modal('hide');
+            fetchExamTypes();
+        } else {
+            console.error('Error saving exam type:', result);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error saving exam type',
+                text: result
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error saving exam type:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error saving exam type',
+            text: 'An error occurred while saving the exam type. Please try again.'
+        });
+    });
+}
 
-                        $('#departmentFormModal').modal('show');
-                    } catch (error) {
-                        console.error('Error fetching department:', error);
-                        Swal.fire('Error', 'Failed to fetch department', 'error');
-                    }
-                }
+function deleteExamType(examTypeId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won’t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`${examTypesApiUrl}/${examTypeId}`, {
+                method: 'DELETE'
+            })
+            .then(() => {
+                Swal.fire(
+                    'Deleted!',
+                    'The exam type has been deleted.',
+                    'success'
+                );
+                fetchExamTypes();
+            })
+            .catch(error => {
+                console.error('Error deleting exam type:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error deleting exam type',
+                    text: 'An error occurred while deleting the exam type. Please try again.'
+                });
+            });
+        }
+    });
+}
 
-                // Clear form fields
-                function clearDepartmentForm() {
-                    document.getElementById('departmentId').value = '';
-                    document.getElementById('departmentName').value = '';
-                }
+function clearExamTypeForm() {
+    document.getElementById('examTypeForm').reset();
+}
 
-                // Save a new or existing department
-                async function saveEntity(event) {
-                    event.preventDefault(); // Prevent form from submitting the default way
-
-                    const departmentId = document.getElementById('departmentId').value;
-                    const departmentName = document.getElementById('departmentName').value;
-
-                    if (!departmentName) {
-                        Swal.fire('Error', 'Please enter a department name', 'error');
-                        return;
-                    }
-
-                    try {
-                        let response;
-                        const data = { departmentName, isActive: true };
-
-                        if (departmentId) {
-                            // Update existing department
-                            response = await fetch(`http://localhost:5085/api/Departments/${departmentId}`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(data)
-                            });
-                            Swal.fire('Updated!', 'Department has been updated successfully.', 'success');
-                        } else {
-                            // Add new department
-                            response = await fetch('http://localhost:5085/api/Departments', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(data)
-                            });
-                            Swal.fire('Added!', 'Department has been added successfully.', 'success');
-                        }
-
-                        if (!response.ok) throw new Error('Network response was not ok');
-
-                        $('#departmentFormModal').modal('hide');
-                        fetchDepartments();
-                    } catch (error) {
-                        console.error('Error saving department:', error);
-                        Swal.fire('Error', 'Failed to save department', 'error');
-                    }
-                }
-
-                // Confirm delete department
-                function confirmDelete(departmentId) {
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'No, cancel!',
-                        reverseButtons: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            deleteDepartment(departmentId);
-                        } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            Swal.fire('Cancelled', 'Your department is safe :)', 'error');
-                        }
-                    });
-                }
-
-                // Delete department
-                async function deleteDepartment(departmentId) {
-                    try {
-                        const response = await fetch(`http://localhost:5085/api/Departments/${departmentId}`, {
-                            method: 'DELETE'
-                        });
-
-                        if (!response.ok) throw new Error('Network response was not ok');
-
-                        fetchDepartments();
-                        Swal.fire('Deleted!', 'Your department has been deleted.', 'success');
-                    } catch (error) {
-                        console.error('Error deleting department:', error);
-                        Swal.fire('Error', 'Failed to delete department', 'error');
-                    }
-                }
-
-                // Initialize the page by fetching departments
-                document.addEventListener('DOMContentLoaded', fetchDepartments);
-
-                // Expose functions to the global scope
-                window.openDepartmentForm = openDepartmentForm;
-                window.openEditForm = openEditForm;
-                window.confirmDelete = confirmDelete;
-                window.deleteDepartment = deleteDepartment;
-                window.saveEntity = saveEntity;
-                window.clearDepartmentForm = clearDepartmentForm;
 
 
             </script>
 
-</body>
+
+            <body>
 
 </html>
