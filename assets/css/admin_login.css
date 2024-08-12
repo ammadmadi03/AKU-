@@ -1,36 +1,92 @@
 html, body {
     height: 100%;
     margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1e1e1e; /* Dark background for contrast */
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background for a vibrant look */
     overflow: hidden;
 }
 
 .login-container {
     position: relative;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Add padding for smaller screens */
+}
+
+.title-container {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.title {
+    font-size: 4rem;
+    color: #ffffff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .login-form {
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px; 
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 400px;
     width: 100%;
-    z-index: 1; /* Ensure the form is on top */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
+    animation: fadeIn 0.6s ease-out;
 }
 
-h1 {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
     text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .welcome-message span {
     display: inline-block;
     opacity: 0;
-    animation: fadeIn 0.5s forwards;
+    animation: slideIn 0.5s forwards;
 }
 
 .welcome-message span:nth-child(1) { animation-delay: 0.1s; }
@@ -42,79 +98,88 @@ h1 {
 .welcome-message span:nth-child(7) { animation-delay: 0.7s; }
 .welcome-message span:nth-child(8) { animation-delay: 0.8s; }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
     }
-}
-
-.login-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../img/the-aga-khan-university-logo-vector.png);
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    animation: fadeInImage 2s 1s forwards;
-    z-index: 0; /* Ensure the image is behind the form */
-}
-
-@keyframes fadeInImage {
     to {
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
 .input-field, .lbtn {
-    width: calc(100% - 20px); 
-    padding: 10px;
+    width: calc(100% - 20px);
+    padding: 14px;
     margin-bottom: 20px;
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    box-sizing: border-box; 
-    height: 40px; /* Set a fixed height */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+.input-field {
+    background-color: #f9f9f9;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    background-color: #fff;
 }
 
 .lbtn {
     border: none;
-    background-color: #007bff; 
+    background: linear-gradient(45deg, #007bff, #00d2ff);
+    color: #fff;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s; 
-    height: 40px; /* Ensure the height is the same as the input fields */
+    transition: background 0.3s ease, transform 0.2s ease;
+    height: 45px;
+    animation: buttonPulse 1s infinite;
+}
+
+@keyframes buttonPulse {
+    0% {
+        background: linear-gradient(45deg, #007bff, #00d2ff);
+    }
+    50% {
+        background: linear-gradient(45deg, #0056b3, #00aaff);
+    }
+    100% {
+        background: linear-gradient(45deg, #007bff, #00d2ff);
+    }
 }
 
 .lbtn:hover {
-    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     .login-form {
-        padding: 15px;
+        padding: 30px;
+    }
+
+    .input-field, .lbtn {
+        padding: 10px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form {
+        padding: 20px;
     }
 
     .input-field, .lbtn {
         padding: 8px;
         height: 35px;
     }
-}
 
-@media (max-width: 480px) {
-    .login-form {
-        padding: 10px;
-    }
-
-    .input-field, .lbtn {
-        padding: 6px;
-        height: 30px;
-    }
-
-    h1 {
+    h2 {
         font-size: 1.5rem;
     }
 }
