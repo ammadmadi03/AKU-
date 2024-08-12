@@ -470,6 +470,11 @@
                                     <label for="resume">Upload your Resume: </label>
                                     <input type="file" class="form-control-file" id="resume" name "resume" accept="application/pdf">
                                 </div>
+
+                                <div id="verificationMessage" style="display: none; color: red; font-weight: bold;">
+                                    Please verify details before submitting.
+                                </div>
+
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">Name:</label>
@@ -486,6 +491,18 @@
                                     <div class = "form-group">
                                         <label for="skills">Skills:</label>
                                         <input type="text" class="form-control" id="skills" placeholder="Skills">
+                                    </div>
+                                    <div id="educationFields">
+                                        <div class="form-group row">
+                                            <div class = "col-md-8">
+                                                <label for="education1">Education:</label>
+                                                <input type="text" class="form-control education-field" id="education1" name="qualification1" placeholder="Education">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="duration1">Duration:</label>
+                                                <input type="text" class="form-control duration-field" id="duration1" name="duration1" placeholder="Duration">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
