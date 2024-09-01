@@ -34,6 +34,33 @@ def get_skills(text):
             skills.append(skill)
     return ', '.join(skills)
 
+def get_education(text):
+    education = []
+
+    pattern = re.compile(r'''
+        (?i)
+        (?:
+            \bB.?\s?Tech:?\b|
+            \bB\.?(?:[AS]\.?|Eng|Sc)\b|
+            \bM(?:\.[AS]\.|\.Eng|Sc)\b|
+            \b(?:Master|Bachelor)(?:'?s)?\b|
+            \bDoctor(?:ate|al)?\b|
+            \b(?:Under|Post)?[-\s]Graduate\b
+            \bPh\.?D\.?\b|
+            \bD\.?Sc\.?\b|
+            \b[AO][-\s]?levels?\b|
+            \bInter(?:mediate)?\b|
+            \bMatric(?:ulation)?\b
+        )
+        (?::|of|in)?[^\n\t]+\b
+        ''', re.VERBOSE)
+
+    matches = re.findall(pattern, text)
+    for match in matches:
+        education.append(match.strip())
+  
+    return education
+
 def extract_text(file):
     file_stream = io.BytesIO(file.read())
     text = ""
@@ -105,6 +132,7 @@ def parse_resume(file):
     parsed_data["email"] = get_email(text)
     parsed_data["phone"] = get_phone_number(text)
     parsed_data["skills"] = get_skills(text)
+    parsed_data["education"] = get_education(text)
     return parsed_data
 
 if __name__ == "__main__":
